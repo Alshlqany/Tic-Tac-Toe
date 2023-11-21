@@ -19,7 +19,7 @@ for (let i = 0; i < cells.length; i++) {
     cells[i].style.pointerEvents = "none"; 
     players.classList.toggle("o");
     if (
-      // check if the player wins the game
+      // Check if the player wins the game
       check(cells[0], cells[1], cells[2], player) ||
       check(cells[3], cells[4], cells[5], player) ||
       check(cells[6], cells[7], cells[8], player) ||
@@ -31,7 +31,7 @@ for (let i = 0; i < cells.length; i++) {
     ) {
       finish(player);
     } else if (count === 9) {
-      // check if there is no empty cell
+      // Check if there is no empty cell
       finish("Draw");
     }
     player = player === "X" ? "O" : "X";
@@ -57,15 +57,14 @@ function check(c1, c2, c3, val) {
   return false;
 }
 
-function finish(text) {
-  // wait 500 milisec before show the winner
+function finish(winner) {
+  // Wait 500 mili sec before showing the winner
   setTimeout(() => {
     playBoard.classList.remove("show");
     resultBox.classList.add("show");
     cells.forEach((e) => {
       e.innerHTML = "";
-      e.style.pointerEvents = "fill";
-      e.style.backgroundColor = "#fff";
+      e.removeAttribute("style");
       count = 0;
     });
 
@@ -73,7 +72,7 @@ function finish(text) {
       resultBox.innerHTML = `<div class="text">Draw</div>
   <button onclick=replay()>Replay</button>`;
     else {
-      resultBox.innerHTML = `<div class="text">Player <span>${text}</span> won The Game!</div>
+      resultBox.innerHTML = `<div class="text">Player <span>${winner}</span> won The Game!</div>
     <button onclick=replay()>Replay</button>`;
     }
   }, 500);
