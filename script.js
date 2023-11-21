@@ -68,7 +68,7 @@ function finish(winner) {
       count = 0;
     });
 
-    if (text === "Draw")
+    if (winner === "Draw")
       resultBox.innerHTML = `<div class="text">Draw</div>
   <button onclick=replay()>Replay</button>`;
     else {
